@@ -1,7 +1,7 @@
 import re
 
 # Read the input file
-with open('input.txt', 'r') as file:
+with open('input.txt', 'r',encoding='UTF-8') as file:
     content = file.read()
 
 # Define the regex pattern to match the desired lines
@@ -12,10 +12,10 @@ matches = re.findall(pattern, content, re.DOTALL)
 
 # Remove all lines smaller than 3 words
 for match in matches:
-    if len (match.split())<=2:
+    if len (match.split())<=3:
         matches.remove(match)
         
-with open('output.txt', 'w') as output_file:
+with open('output.txt', 'w',encoding='UTF-8') as output_file:
     for match in matches:
         first_part = re.search(r'^([^.]*)\.', match)
         last_part = re.search(r'\.?\s*([\d,]+\.\d+)', match)
