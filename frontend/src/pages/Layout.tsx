@@ -1,11 +1,13 @@
+import { Text } from '@mantine/core';
 import React from 'react';
 
 const Layout: React.FC = () => {
     return (
         <div>
+            <Text>yes</Text>
             <header>
                 {/* Add your header content here */}
-                
+
             </header>
             <main>
                 {/* This is where your page content will go */}

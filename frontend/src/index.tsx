@@ -1,4 +1,6 @@
 import React from 'react';
+import '@mantine/core/styles.css';
+import { createTheme, MantineProvider } from '@mantine/core';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './pages/Layout.tsx';
@@ -49,9 +51,15 @@ const router = createBrowserRouter([
 ])
 
 
+const theme = createTheme({
+  /** Put your mantine theme override here */
+});
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <MantineProvider theme={theme}>
+      <RouterProvider router={router} />
+    </MantineProvider>
   </React.StrictMode>,
 )
 
