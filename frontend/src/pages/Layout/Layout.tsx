@@ -17,7 +17,7 @@ function Layout() {
 
                 <div className="tabs">
                     <div className="tab_div" onClick={() => { navigate("/about") }}><img src="/about.png" className="tab_image"></img></div>
-                    <div className="tab_div" onClick={() => { navigate("/recipe") }}><img src="/recipe.png" className="tab_image"></img></div>
+                    <div className="tab_div" onClick={() => { navigate("/recipe/metro") }}><img src="/recipe.png" className="tab_image"></img></div>
                     <div className="tab_div" onClick={() => { navigate("/grocery") }}><img src="/grocery.png" className="tab_image"></img></div>
                 </div>
 
