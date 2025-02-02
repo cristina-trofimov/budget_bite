@@ -15,14 +15,15 @@ for match in matches:
     if len (match.split())<=2:
         matches.remove(match)
 
-with open('output.txt', 'w') as output_file:
+# Keep only the part after the last comma
+matches = [re.sub(r'.*,(.+)$', r'\1', match) for match in matches]
+
+# Remove everything before the first period, including it
+matches = [re.sub(r'^.*?\.', '', match) for match in matches]
+
+# Write the matches to a new file
+with open('output.txt', 'w', encoding='UTF-8') as output_file:
     for match in matches:
-        first_part = re.search(r'^([^.]*)\.', match)
-        last_part = re.search(r'\.?\s*([\d,]+\.\d+)', match)
-        
-        if first_part and last_part:
-            combined = f"{first_part.group(1)} {last_part.group(1)}"
-            output_file.write(combined + '\n')
-        
+        output_file.write(match + '\n')
 
 print("Extraction complete. Check 'output.txt' for the results.")
