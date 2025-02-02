@@ -1,14 +1,17 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
+import RecipeComponent from '../../components/RecipeComponent.tsx';
 import './RecipePage.css';
 import { MultiSelect, Select } from '@mantine/core';
+//import { IGA_dict } from "../../../../backend/mapping.py";
 
 function RecipePage() {
   const { store } = useParams();
 
   const [storeChoice, setStoreChoice] = React.useState(store || "metro");
-  const [dietaryChoices, setDietaryChoices] = React.useState("");
-  const [allergies, setAllergies] = React.useState([]);
+  const [dietaryChoices, setDietaryChoices] = React.useState<string | null >("");
+  const [allergies, setAllergies] = React.useState<string[]>([]);
+
 
   return (
     <>
@@ -40,7 +43,7 @@ function RecipePage() {
           </div>
         </div>
       </div>
-
+      < RecipeComponent />
     </>
   )
 }
