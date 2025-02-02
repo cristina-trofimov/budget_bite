@@ -3,6 +3,7 @@ import { Text } from '@mantine/core';
 import './HomePage.css';
 import { useNavigate } from 'react-router-dom';
 
+
 function HomePage() {
 
   const navigate = useNavigate();
