@@ -16,25 +16,19 @@ pattern = r'label="([^"]+)"'
 matches = re.findall(pattern, content)
 
 
-# Define the second pattern to match product name and price
-# This pattern will capture the product name and price from each line
-product_price_pattern = r"([A-Za-zÀ-ÿ\s\|,]+)\s[\|\-]?\s?.*\$(\d+\.\d+)"
+pattern = r'\|\s*([^,]+?)(?:,| \d+ mL| \d+ G).*?(\$[\d.,]+)'
 
-# List to hold the final results
-product_price_matches = []
+matches = re.findall(pattern, content)
 
-# Apply the second pattern to extract product name and price
-for match in matches:
-    result = re.findall(product_price_pattern, match)
-    if result:
-        product_price_matches.append(f"{result[0][0].strip()} ${result[0][1]}")
+matches = list(set(matches))
 
-# Remove duplicates by converting the list to a set and back to a list
-product_price_matches = list(set(product_price_matches))
-
-# Write the matches to a new file
-with open('output.txt', 'w') as output_file:
-    for match in product_price_matches:
-        output_file.write(match + '\n')
+# Write cleaned results
+with open('output.txt', 'w', encoding='utf-8') as output_file:
+    for product, price in matches:
+        # Clean up product names
+        product = product.split('|')[-1].strip()  # Handle nested pipes
+        product = re.sub(r'\s{2,}', ' ', product)  # Remove extra spaces
+        
+        output_file.write(f"{product} - {price}\n")
 
 print("Extraction complete. Check 'output.txt' for the results.")
