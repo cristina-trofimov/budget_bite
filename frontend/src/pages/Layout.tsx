@@ -1,5 +1,6 @@
 import { Text } from '@mantine/core';
 import React from 'react';
+import RecipeComponent from '../components/RecipeComponent.tsx';
 
 const Layout: React.FC = () => {
     return (
@@ -10,7 +11,10 @@ const Layout: React.FC = () => {
 
             </header>
             <main>
-                {/* This is where your page content will go */}
+                {/* This is where your page content will go */
+               <RecipeComponent />
+                
+                }
             </main>
             <footer>
                 {/* Add your footer content here */}
