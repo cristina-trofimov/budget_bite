@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import RecipeComponent from '../../components/RecipeComponent.tsx';
 import './RecipePage.css';
 import { MultiSelect, Select } from '@mantine/core';
+//import { IGA_dict } from "../../../../backend/mapping.py";
 
 function RecipePage() {
   const { store } = useParams();

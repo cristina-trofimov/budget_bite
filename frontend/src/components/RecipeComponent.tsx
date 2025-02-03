@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import Ingredient from '../interface/ingredient';
 import Recipe from '../interface/Recipe';
 import './RecipeComponent.css';
 
 const API_KEY = "34a7dac016c6479c9c30c16be772b3d8";
 
-const RecipeComponent: React.FC = () => {
-    const [ingredients, setIngredients] = useState<Ingredient[]>([
-        { name: "carrot", cost: 2 }, 
-        { name: "chicken", cost: 2 },
-        { name: "cabbage", cost: 2 },
-    ]);
+interface RecipeComponentProps {
+    initialIngredients?: Ingredient[];
+  }
+
+  const RecipeComponent: React.FC<RecipeComponentProps> = ({ initialIngredients = [
+    { name: "carrot", cost: 2 }, 
+    { name: "chicken", cost: 2 },
+    { name: "cabbage", cost: 2 },
+] }) => {
+    const [ingredients, setIngredients] = useState<Ingredient[]>(initialIngredients);
     const [recipes, setRecipes] = useState<Recipe[]>([]);
     const [error, setError] = useState<string | null>(null);
+    
+    useEffect(() => {
+        setIngredients(initialIngredients);
+      }, [initialIngredients]);
 
     /////////// function to format ingredient for API
     const formatIngredients = (ingredients: Ingredient[]): string => {
@@ -32,10 +41,8 @@ const RecipeComponent: React.FC = () => {
       try {
         const response = await fetch(urlRecipe);
         const data = await response.json();
-        console.log(data);
         const usedIngredients =  data.extendedIngredients.map((ingredient: any) => ingredient.name);
 
-        console.log("hhhhhhhhhhhhhn "+usedIngredients);
         const matchingIngredients = ingredients.filter(ingredient => 
           usedIngredients.includes(ingredient.name)
         );
