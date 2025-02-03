@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import RecipeComponent from '../../components/recipeComponent';
+import RecipeComponent from '../../components/RecipeComponent.tsx';
 
 function RecipePage() {
   const { store } = useParams();
