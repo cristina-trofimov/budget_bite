@@ -1,11 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
+import RecipeComponent from '../../components/recipeComponent';
 
 function RecipePage() {
   const { store } = useParams();
 
   return (
-    <div>RecipePage for {store}</div>
+    <><div>RecipePage for {store}
+    </div><RecipeComponent /></>
   )
 }
 
